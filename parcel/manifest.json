@@ -1,0 +1,125 @@
+{
+    "parcels": [
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-el5.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-el6.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-lucid.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-precise.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-sles11.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-squeeze.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-trusty.parcel"
+        },
+        {
+            "replaces": "REDIS",
+            "hash": "2f5222234df5de51dc4d2fffebd703a466374506",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "2.8.17",
+                    "version": "2.8.17",
+                    "name": "redis",
+                    "pkg_release": "2.8.17"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "REDIS-2.8.17_0.1.0-wheezy.parcel"
+        }
+    ],
+    "lastUpdated": 1417536267
+}

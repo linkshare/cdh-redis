@@ -1,0 +1,482 @@
+{
+    "name": "REDIS",
+    "label": "Redis",
+    "version": "2.8.17_0.1.2",
+    "description": "Redis is an open source, BSD licensed, advanced key-value cache and store",
+    "inExpressWizard": true,
+    "runAs": {
+        "user": "redis",
+        "group": "redis"
+    },
+    "serviceDependencies": [
+    ],
+    "parcel": {
+        "repoUrl": "http://localhost:8000",
+        "requiredTags": [
+            "redis"
+        ]
+    },
+	"commands" : [
+	  {
+	    "name" : "RedisSentinelResetCommand",
+	    "label" : "Reset Topology (POTENTIAL DATA LOSS)",
+	    "description" : "Use this command to reset to default master node. This should be used when adding/removing nodes, data loss may occur and should be backed up prior to run this command",
+	    "roleName" : "REDIS",
+	    "roleCommand" : "RedisSentinelResetCommand",
+	    "runMode" : "all"
+	  }
+	], 
+	"serviceInit" : {
+	   "preStartSteps" : [
+	     { 
+	       "commandName" : "RedisSentinelResetCommand"
+	     }
+	   ]
+	},
+    "roles": [
+        {
+            "name": "REDIS",
+            "label": "Redis Server",
+            "pluralLabel": "Redis Servers",
+		    "parameters": [
+		        {
+		            "name": "port",
+		            "label": "port",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "port",
+		            "default": 6379
+		        },
+		        {
+		            "name": "sentinel_port",
+		            "label": "sentinel_port",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "port",
+		            "default": 26379
+		        },
+		        {
+		            "name": "tcp_backlog",
+		            "label": "tcp_backlog",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 511
+		        },
+		        {
+		            "name": "timeout",
+		            "label": "timeout",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "seconds",
+		            "default": 0
+		        },
+		        {
+		            "name": "tcp_keepalive",
+		            "label": "tcp_keepalive",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "seconds",
+		            "default": 0
+		        },
+		        {
+		            "name": "loglevel",
+		            "label": "loglevel",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string_enum",
+		            "validValues": ["debug", "verbose", "notice", "warning"],
+		            "default": "notice"
+		        },		        
+		        {
+		            "name": "logfile",
+		            "label": "logfile",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "path",
+		            "pathType": "localDataFile",
+		            "default": "redis-server.log"
+		        },
+		        {
+		            "name": "databases",
+		            "label": "databases",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 16
+		        },
+		        {
+		            "name": "save",
+		            "label": "save",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string_array",
+		            "separator": "\nsave ",
+		            "default": ["900 1", "300 10", "60 10000"]
+		        },
+		        {
+		            "name": "stop_writes_on_bgsave_error",
+		            "label": "stop_writes_on_bgsave_error",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "rdbcompression",
+		            "label": "rdbcompression",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "rdbchecksum",
+		            "label": "rdbchecksum",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "dbfilename",
+		            "label": "dbfilename",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "dump.rdb"
+		        },
+		        {
+		            "name": "data_dir",
+		            "label": "data_dir",
+		            "description": "Path to directory to persist data file inside",
+		            "required": "false",
+		            "type": "path",
+		            "pathType": "localDataDir",
+		            "default": "/var/lib/redis"
+		        },
+		        {
+		            "name": "slave_serve_stale_data",
+		            "label": "slave_serve_stale_data",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "slave_read_only",
+		            "label": "slave_read_only",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "repl_disable_tcp_nodelay",
+		            "label": "repl_disable_tcp_nodelay",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "no"
+		        },
+		        {
+		            "name": "slave_priority",
+		            "label": "slave_priority",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 100
+		        },
+		        {
+		            "name": "appendonly",
+		            "label": "appendonly",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "no"
+		        },
+		        {
+		            "name": "appendfilename",
+		            "label": "appendfilename",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "path",
+					"pathType": "localDataFile",            
+		            "default": "appendonly.aof"
+		        },
+		        {
+		            "name": "appendfsync",
+		            "label": "appendfsync",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "everysec"
+		        },
+		        {
+		            "name": "no_appendfsync_on_rewrite",
+		            "label": "no_appendfsync_on_rewrite",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "no"
+		        },
+		        {
+		            "name": "auto_aof_rewrite_percentage",
+		            "label": "auto_aof_rewrite_percentage",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "percent",
+		            "default": 100
+		        },
+		        {
+		            "name": "auto_aof_rewrite_min_size",
+		            "label": "auto_aof_rewrite_min_size",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "memory",
+		            "unit": "megabytes",
+		            "default": 64
+		        },
+		        {
+		            "name": "aof_load_truncated",
+		            "label": "aof_load_truncated",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "lua_time_limit",
+		            "label": "lua_time_limit",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "milliseconds",
+		            "default": 5000
+		        },
+		        {
+		            "name": "slowlog_log_slower_than",
+		            "label": "slowlog_log_slower_than",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 10000
+		        },
+		        {
+		            "name": "slowlog_max_len",
+		            "label": "slowlog_max_len",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 128
+		        },
+		        {
+		            "name": "latency_monitor_threshold",
+		            "label": "latency_monitor_threshold",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "milliseconds",
+		            "default": 0
+		        },
+		        {
+		            "name": "notify_keyspace_events",
+		            "label": "notify_keyspace_events",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": ""
+		        },
+		        {
+		            "name": "hash_max_ziplist_entries",
+		            "label": "hash_max_ziplist_entries",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 512
+		        },
+		        {
+		            "name": "hash_max_ziplist_value",
+		            "label": "hash_max_ziplist_value",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 64
+		        },
+		        {
+		            "name": "list_max_ziplist_entries",
+		            "label": "list_max_ziplist_entries",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 512
+		        },
+		        {
+		            "name": "list_max_ziplist_value",
+		            "label": "list_max_ziplist_value",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 64
+		        },
+		        {
+		            "name": "set_max_intset_entries",
+		            "label": "set_max_intset_entries",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 512
+		        },
+		        {
+		            "name": "zset_max_ziplist_entries",
+		            "label": "zset_max_ziplist_entries",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 128
+		        },
+		        {
+		            "name": "zset_max_ziplist_value",
+		            "label": "zset_max_ziplist_value",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 64
+		        },
+		        {
+		            "name": "hll_sparse_max_bytes",
+		            "label": "hll_sparse_max_bytes",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "unit": "bytes",
+		            "default": "3000"
+		        },
+		        {
+		            "name": "activerehashing",
+		            "label": "activerehashing",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        },
+		        {
+		            "name": "client_output_buffer_limit",
+		            "label": "client_output_buffer_limit",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string_array",
+		            "separator": "\nclient-output-buffer-limit ",
+		            "default": ["normal 0 0 0", "slave 256mb 64mb 60", "pubsub 32mb 8mb 60"]
+		        },
+		        {
+		            "name": "hz",
+		            "label": "hz",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "long",
+		            "default": 10
+		        },
+		        {
+		            "name": "aof_rewrite_incremental_fsync",
+		            "label": "aof_rewrite_incremental_fsync",
+		            "description": "See Redis Documentation",
+		            "required": "false",
+		            "type": "string",
+		            "default": "yes"
+		        }        
+		    ],            
+            "startRunner": {
+                "program": "scripts/control.sh",
+                "args": [
+                    "redis",
+                    "start"
+                ],
+				"environmentVariables" : {
+					"MY_HOST": "${host}",
+					"PORT": "${port}",
+					"SENTINEL_PORT": "${sentinel_port}",
+					"TCP_BACKLOG": "${tcp_backlog}",
+					"TIMEOUT": "${timeout}",
+					"TCP_KEEPALIVE": "${tcp_keepalive}",
+					"LOGLEVEL": "${loglevel}",
+					"LOGFILE": "${log_dir}/${logfile}",
+					"DATABASES": "${databases}",
+					"SAVE": "${save}",
+					"STOP_WRITES_ON_BGSAVE_ERROR": "${stop_writes_on_bgsave_error}",
+					"RDBCOMPRESSION": "${rdbcompression}",
+					"RDBCHECKSUM": "${rdbchecksum}",
+					"DBFILENAME": "${dbfilename}",
+					"DATA_DIR": "${data_dir}",
+					"SLAVE_SERVE_STALE_DATA": "${slave_serve_stale_data}",
+					"SLAVE_READ_ONLY": "${slave_read_only}",
+					"REPL_DISABLE_TCP_NODELAY": "${repl_disable_tcp_nodelay}",
+					"SLAVE_PRIORITY": "${slave_priority}",
+					"APPENDONLY": "${appendonly}",
+					"APPENDFILENAME": "${appendfilename}",
+					"APPENDFSYNC": "${appendfsync}",
+					"NO_APPENDFSYNC_ON_REWRITE": "${no_appendfsync_on_rewrite}",
+					"AUTO_AOF_REWRITE_PERCENTAGE": "${auto_aof_rewrite_percentage}",
+					"AUTO_AOF_REWRITE_MIN_SIZE": "${auto_aof_rewrite_min_size}",
+					"AOF_LOAD_TRUNCATED": "${aof_load_truncated}",
+					"LUA_TIME_LIMIT": "${lua_time_limit}",
+					"SLOWLOG_LOG_SLOWER_THAN": "${slowlog_log_slower_than}",
+					"SLOWLOG_MAX_LEN": "${slowlog_max_len}",
+					"LATENCY_MONITOR_THRESHOLD": "${latency_monitor_threshold}",
+					"NOTIFY_KEYSPACE_EVENTS": "${notify_keyspace_events}",
+					"HASH_MAX_ZIPLIST_ENTRIES": "${hash_max_ziplist_entries}",
+					"HASH_MAX_ZIPLIST_VALUE": "${hash_max_ziplist_value}",
+					"LIST_MAX_ZIPLIST_ENTRIES": "${list_max_ziplist_entries}",
+					"LIST_MAX_ZIPLIST_VALUE": "${list_max_ziplist_value}",
+					"SET_MAX_INTSET_ENTRIES": "${set_max_intset_entries}",
+					"ZSET_MAX_ZIPLIST_ENTRIES": "${zset_max_ziplist_entries}",
+					"ZSET_MAX_ZIPLIST_VALUE": "${zset_max_ziplist_value}",
+					"HLL_SPARSE_MAX_BYTES": "${hll_sparse_max_bytes}",
+					"ACTIVEREHASHING": "${activerehashing}",
+					"CLIENT_OUTPUT_BUFFER_LIMIT": "${client_output_buffer_limit}",
+					"HZ": "${hz}",
+					"AOF_REWRITE_INCREMENTAL_FSYNC": "${aof_rewrite_incremental_fsync}"					
+				}					                           
+            },
+			"commands" : [
+			  {
+			    "name" : "RedisSentinelResetCommand",
+			    "label" : "Reset Topology (POTENTIAL DATA LOSS)",
+			    "description" : "Use this command to reset to default master node. This should be used when adding/removing nodes, data loss may occur and should be backed up prior to run this command. NOTE: Please run this command on the entire Redis serice, not just this instance",
+			    "expectedExitCodes": [0],
+			    "requiredRoleState": "stopped",
+				"commandRunner" : {
+					"program" : "scripts/reset_sentinel.sh",
+					"args" : []
+				}
+			  }
+			],              
+            "logging": {
+                "dir": "/var/lib/redis",
+                "filename": "${logfile}",
+                "configName": "log_dir"
+            },
+            "configWriter": {
+                "peerConfigGenerators": [
+                    {
+                        "filename": "redis_hosts.properties",
+                        "params": [
+                            "log_dir"
+                        ],
+                        "roleName": "REDIS"
+                    }
+                ],
+                "auxConfigGenerators": [
+                    {
+                        "filename": "redis.conf",
+                        "sourceFilename": "aux/redis.conf"
+                    }
+                ]
+                
+            }
+        }
+    ]
+}

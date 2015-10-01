@@ -1,0 +1,9 @@
+Portions of this software were developed in the User Experience
+and Analytics Groups at Rakuten Marketing, LCC.
+
+This CSD and Parcel package uses Redis software.
+
+Redis is open source software released under the terms of the three clause BSD license. Most of the Redis source code was written and is copyrighted by Salvatore Sanfilippo and Pieter Noordhuis. A list of other contributors can be found in the git history.
+The Redis trademark and logo are owned by Salvatore Sanfilippo and can be used in accordance with the Redis Trademark Guidelines.
+
+Redis license can be found at http://redis.io/topics/license

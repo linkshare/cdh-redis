@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "name": "REDIS",
+  "version": "2.8.17_0.1.0",
+  "setActiveSymlink": true,
+  "depends": "CDH",
+  "replaces": "REDIS",
+  "conflicts": "",
+
+  "provides": [
+    "redis"
+  ],
+
+  "scripts": {
+    "defines": "redis_env.sh"
+  },
+
+  "packages": [
+    { "name"   : "redis",
+      "version": "2.8.17"
+    }
+  ],
+
+  "components": [
+    { "name"       : "redis",
+      "version"    : "2.8.17",
+      "pkg_version": "2.8.17",
+      "pkg_release": "2.8.17"
+    }
+  ],
+
+  "users": {
+    "redis": {
+      "longname"    : "Redis",
+      "home"        : "/var/lib/redis",
+      "shell"       : "/bin/bash",
+      "extra_groups": [ "redis" ]
+    }
+  },
+
+  "groups": [
+    "redis"
+  ]
+}
